@@ -1,0 +1,20 @@
+{
+  "id": "/RunnBoot-Digital/",
+  "name": "RunnBoot Digital — Uma Aventura STEAM",
+  "short_name": "RunnBoot",
+  "description": "Jogo educativo STEAM de robótica, programação, design e cultura geek.",
+  "start_url": "/RunnBoot-Digital/",
+  "scope": "/RunnBoot-Digital/",
+  "display": "standalone",
+  "background_color": "#0b1327",
+  "theme_color": "#192543",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
