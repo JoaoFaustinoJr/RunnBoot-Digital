@@ -947,4 +947,23 @@ radial-gradient(circle,#2d4785,#07152d 85%)!important}
 #rbIntroArena .rb-intro-tile{box-shadow:inset 0 2px #ffffff38,inset 0 -4px #0007,0 0 8px #57bfff55!important}
 @media(max-width:600px){#arenaScreen #track .core-stage:after{inset:8%;border-width:1px}#arenaScreen #track .core-stage .core-symbol{border-width:1px!important}#arenaScreen #track .core-stage .theme-station{border-width:1px!important}}
 @media(prefers-reduced-motion:reduce){#arenaScreen #track .core-stage .core-symbol{animation:none!important}}
+</style><style id="rb-mockup-stage-v11">
+/* Consistent futuristic platform across cinematic intro and playable arena */
+#rbIntroArena,#arenaScreen #track.track{--rb-panel:#0a1a39}
+#rbIntroArena{border:3px solid #43d8ff!important;border-radius:24px!important;box-shadow:0 0 0 3px #e9c767aa,0 0 35px #31caff77,inset 0 0 42px #01071c!important;overflow:hidden!important}
+#rbIntroArena .rb-intro-core{grid-area:3/3/12/12!important;border:3px solid #ffda7b!important;border-radius:24%!important;box-shadow:inset 0 0 55px #03091d,0 0 20px #c586ff77,0 0 45px #3cbaff55!important;position:relative;isolation:isolate}
+#rbIntroArena .rb-intro-core:before{content:"";position:absolute;width:73%;aspect-ratio:1;border:2px dashed #7bdfff77;border-radius:50%;box-shadow:0 0 0 16px #ffd76c15,0 0 0 35px #6acfff10;animation:rbCoreSpin 24s linear infinite;pointer-events:none}
+#rbIntroArena .rb-intro-core span{z-index:1;position:relative;display:grid;place-items:center;width:clamp(45px,11vw,98px);height:clamp(45px,11vw,98px);margin:0 auto 8px;border:2px solid #ffdc77;border-radius:22%;background:radial-gradient(circle,#4d51aa,#0c1a41);box-shadow:0 0 25px #ffd77e99}
+#rbIntroArena .rb-intro-tile{border-radius:clamp(3px,1.2vw,10px)!important;border-width:1px!important;font-weight:900!important;box-shadow:inset 0 2px #ffffff50,inset 0 -4px #000a,0 0 8px #5dc7ff44!important}
+#rbIntroArena .rb-intro-tile.rb-station{border:2px solid #ffe9a4!important;box-shadow:inset 0 0 9px #ffffff66,0 0 14px var(--station),0 0 24px var(--station)!important}
+#rbIntroArena .rb-intro-player{width:22%!important;height:27%!important;filter:drop-shadow(0 0 16px var(--avatar-color))!important}
+#rbIntroArena .rb-intro-player small{font-weight:900!important;border:1px solid #d9eaff77!important;box-shadow:0 0 12px var(--avatar-color)!important}
+#arenaScreen #track .core-stage{border-radius:22%!important}
+#arenaScreen #track .cell{transform-style:preserve-3d!important;backface-visibility:hidden!important}
+#arenaScreen #track .cell.checkpoint{border-radius:24%!important;z-index:6!important}
+#arenaScreen #track .cell .board-occupants{overflow:visible!important}
+#arenaScreen #track .core-stage .theme-station{border-radius:16px!important}
+#arenaScreen .board-scroll{background-image:radial-gradient(circle at 50% 50%,#4b37a533,transparent 58%),linear-gradient(135deg,#0b2147,#050c20)!important}
+@media(max-width:600px){#rbIntroArena{border-radius:12px!important;border-width:2px!important}#rbIntroArena .rb-intro-core{border-width:2px!important}#rbIntroArena .rb-intro-player{width:23%!important;height:24%!important}#arenaScreen #track .core-stage{border-radius:15%!important}}
+@media(prefers-reduced-motion:reduce){#rbIntroArena .rb-intro-core:before{animation:none!important}}
 </style></body></html>
