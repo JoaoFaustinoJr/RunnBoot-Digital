@@ -1050,4 +1050,22 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #arenaScreen #track .theme-station:before{opacity:.8!important}
 #arenaScreen #track #coreHoloDie{filter:drop-shadow(0 0 12px #8ddfff88)!important}
 @media(max-width:650px){#arenaScreen #track .cell.rb-bonus:after{top:-8px;right:-3px;font-size:13px}}
+</style><style id="rb-visual-depth-v17">
+/* Raised, three-dimensional dice: no change to randomness or game rules */
+#arenaScreen #die,#arenaScreen #track #coreHoloDie{font-family:"Segoe UI Symbol","Noto Sans Symbols 2",sans-serif!important;position:relative!important;display:inline-grid!important;place-items:center!important;isolation:isolate;transform-style:preserve-3d;perspective:500px;filter:drop-shadow(5px 9px 7px #0009)!important;transition:transform .32s ease,filter .32s ease!important}
+#arenaScreen #die{color:#d91f45!important;background:linear-gradient(138deg,#fffef5 2%,#fff4d9 57%,#e2bd8e 100%)!important;border:3px solid #ffe8bb!important;border-radius:19%!important;width:clamp(65px,9vw,108px)!important;height:clamp(65px,9vw,108px)!important;font-size:clamp(51px,7.2vw,87px)!important;box-shadow:inset -7px -8px 13px #b68e7366,inset 5px 5px 8px #fff,6px 8px 0 #a07d71,10px 14px 16px #0009!important;transform:rotate(-8deg) rotateY(-13deg) rotateX(10deg)!important}
+#arenaScreen #track #coreHoloDie{background:linear-gradient(145deg,#fffff5,#ffedce 66%,#d4a982)!important;border:3px solid #ffe9c4!important;border-radius:17%!important;width:clamp(48px,7vw,88px)!important;height:clamp(48px,7vw,88px)!important;font-size:clamp(40px,5.8vw,73px)!important;color:#d71c48!important;text-shadow:0 1px 2px #ffb9c5!important;box-shadow:inset 4px 4px 6px #fff,inset -7px -7px 11px #cba88999,5px 6px 0 #a9877a,8px 10px 16px #0008!important;transform:rotate(-7deg) rotateY(-17deg) rotateX(12deg)!important;margin:8px auto!important}
+#arenaScreen #track #coreHoloDie.spinning{animation:rbDice3dSpin .32s linear infinite!important}
+@keyframes rbDice3dSpin{0%{transform:rotate(-18deg) rotateY(-25deg) rotateX(12deg) scale(.9)}50%{transform:rotate(10deg) rotateY(25deg) rotateX(-10deg) scale(1.05)}100%{transform:rotate(-18deg) rotateY(-25deg) rotateX(12deg) scale(.9)}}
+/* Illustrated sectors, aligned to the station rather than covering playable squares */
+#arenaScreen #track .core-stage .theme-station{position:relative!important;overflow:visible!important}
+#arenaScreen #track .core-stage .theme-station:after{content:"";position:absolute;inset:-12% -14%;z-index:-1;pointer-events:none;background:var(--rb-station-art,none) center / 74% 74% no-repeat;opacity:.16;filter:drop-shadow(0 0 16px currentColor);transform:scale(1.18)}
+#arenaScreen #track .core-stage .theme-station:nth-of-type(1){--rb-station-art:url("assets/estacao-robotica.svg")}
+#arenaScreen #track .core-stage .theme-station:nth-of-type(2){--rb-station-art:url("assets/estacao-programacao.svg")}
+#arenaScreen #track .core-stage .theme-station:nth-of-type(3){--rb-station-art:url("assets/estacao-design.svg")}
+#arenaScreen #track .core-stage .theme-station:nth-of-type(4){--rb-station-art:url("assets/estacao-geek.svg")}
+#arenaScreen #track .cell.rb-bonus{animation:rbBonusPulse 3.5s ease-in-out infinite!important}
+@keyframes rbBonusPulse{0%,100%{box-shadow:inset 0 0 8px #ffe9a044,0 0 8px #ffcc6644}50%{box-shadow:inset 0 0 15px #ffe9a099,0 0 23px #ffd56c99}}
+@media(max-width:650px){#arenaScreen #track #coreHoloDie{width:52px!important;height:52px!important;font-size:44px!important;margin:3px auto!important;border-width:2px!important}#arenaScreen #die{width:70px!important;height:70px!important;font-size:58px!important}}
+@media(prefers-reduced-motion:reduce){#arenaScreen #track .cell.rb-bonus,#arenaScreen #track #coreHoloDie.spinning{animation:none!important}}
 </style></body></html>
