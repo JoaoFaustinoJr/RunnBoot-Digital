@@ -611,19 +611,20 @@ body:not(.arena-focused) #setupScreen{padding-top:8px}
 @media(max-width:600px){.board-scroll{padding:5px!important;border-radius:14px!important}.track .cell{box-shadow:inset 0 0 5px #0006!important}.track .cell.checkpoint{box-shadow:inset 0 0 8px #ffe39b55,0 0 5px #f3c96066!important}.track .cell.active,.track .cell.moving-cell{box-shadow:inset 0 0 7px #e5faff88,0 0 8px #85dfff!important}.track .core-stage{box-shadow:inset 0 0 12px #050b20,0 0 9px #dcb95b77!important}}
 @media(prefers-reduced-motion:reduce){.track .cell{transition:none!important}}
 
-/* Arena STEAM — marcos de estação com relevo e leitura em projeção */
-#track .cell.checkpoint{position:relative;z-index:4;isolation:isolate;border:2px solid #ffe69a!important;border-radius:15px!important;background:linear-gradient(155deg,#294269,#132340 58%,#09182e)!important;box-shadow:0 0 0 2px #ffcc5860,0 0 25px #ffc34caa,0 8px 0 #654522,inset 0 2px 18px #ffdf7555!important;transform:translateY(-4px) scale(1.075);transition:transform .3s,box-shadow .3s}
-#track .cell.checkpoint:before{content:"";position:absolute;inset:-5px;border-radius:18px;border:1px solid #ffe9a566;pointer-events:none}
-#track .cell.checkpoint:after{content:"✦ ESTAÇÃO";display:block;position:absolute;bottom:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:8px;letter-spacing:.07em;font-weight:900;padding:2px 5px;border:1px solid #ffdc82;border-radius:5px;background:#15243b;color:#ffe9a1;box-shadow:0 0 10px #ffd26588}
-#track .cell.checkpoint-0{--station-glow:#ff6262;border-color:#ff8e83!important;box-shadow:0 0 0 2px #ff5c5c88,0 0 24px #ff4b4baa,0 8px 0 #752a30,inset 0 2px 18px #ff6e6e55!important}
-#track .cell.checkpoint-1{--station-glow:#4bdcff;border-color:#85edff!important;box-shadow:0 0 0 2px #3bdaff88,0 0 24px #30caffaa,0 8px 0 #205575,inset 0 2px 18px #58dfff55!important}
-#track .cell.checkpoint-2{--station-glow:#ffc956}
-#track .cell.checkpoint-3{--station-glow:#62f9b4;border-color:#91ffcd!important;box-shadow:0 0 0 2px #4bf8a188,0 0 24px #39ed94aa,0 8px 0 #276b52,inset 0 2px 18px #66ffb455!important}
-#track .cell.checkpoint .board-avatar{z-index:2;filter:drop-shadow(0 0 6px var(--station-glow,#ffcf6c))}
-#track .cell.checkpoint-conquered:before{border-color:#aaffd2;box-shadow:0 0 13px #5effb580}
-#track .cell.checkpoint.moving-cell{transform:translateY(-7px) scale(1.12)}
-@media(min-width:850px){.board-scroll{perspective:1300px;perspective-origin:50% 70%}#track{transform:rotateX(5deg);transform-origin:center 70%;filter:drop-shadow(0 14px 10px #0006)}#track .cell:not(.checkpoint){box-shadow:0 5px 0 #071327,inset 0 0 12px #0005}}
-@media(max-width:700px){#track .cell.checkpoint{transform:translateY(-2px) scale(1.025)}#track .cell.checkpoint:after{font-size:6px;bottom:-10px;padding:1px 2px}}
+/* Checkpoints de canto: relevo apenas nos marcos, sem inclinar a arena */
+.board-scroll{perspective:none!important}
+#track{transform:none!important;filter:none!important}
+#track .cell.checkpoint{position:relative;z-index:3;isolation:isolate;box-sizing:border-box;border:2px solid var(--cp-color,#ffe08b)!important;border-radius:13px!important;background:linear-gradient(155deg,#28426b,#10233e 70%)!important;transform:scale(1.065)!important;transform-origin:center;box-shadow:0 0 0 2px color-mix(in srgb,var(--cp-color,#ffe08b) 48%,transparent),0 0 17px color-mix(in srgb,var(--cp-color,#ffe08b) 60%,transparent),inset 0 0 12px #ffffff25!important;transition:box-shadow .3s,transform .3s}
+#track .cell.checkpoint:before{content:"";position:absolute;inset:-4px;border-radius:15px;border:1px solid var(--cp-color,#ffe08b);opacity:.5;pointer-events:none}
+#track .cell.checkpoint:after{content:none!important}
+#track .cell.checkpoint-0{--cp-color:#ff7777}
+#track .cell.checkpoint-1{--cp-color:#58ddff}
+#track .cell.checkpoint-2{--cp-color:#ffd36a}
+#track .cell.checkpoint-3{--cp-color:#70ffc1}
+#track .cell.checkpoint .board-avatar{transform:none!important;filter:none!important;max-width:100%;flex-shrink:1}
+#track .cell.checkpoint.active,#track .cell.checkpoint.checkpoint-conquered{box-shadow:0 0 0 2px var(--cp-color),0 0 23px var(--cp-color),inset 0 0 18px #ffffff38!important}
+#track .cell.checkpoint.moving-cell{transform:scale(1.09)!important}
+@media(max-width:700px){#track .cell.checkpoint{transform:scale(1.025)!important}#track .cell.checkpoint.moving-cell{transform:scale(1.04)!important}}
 </style><style id="rb-ceremony-style">
 #rbCeremony[hidden]{display:none!important}#rbCeremony{position:fixed;inset:0;z-index:2147483000;background:radial-gradient(ellipse at center,#18365c 0%,#071225 75%);color:#fff;display:flex;align-items:center;justify-content:center;overflow:auto;padding:20px;box-sizing:border-box}
 .rb-stage{width:min(900px,100%);text-align:center;position:relative}.rb-stage h2{font-size:clamp(25px,5vw,48px);color:#ffdb83;margin:12px 0;text-shadow:0 0 22px #d6a848}.rb-stage p{line-height:1.6;color:#d5e6ff}.rb-glow{font-size:clamp(65px,13vw,130px);filter:drop-shadow(0 0 25px #ffe08c);animation:rbFloat 2.4s ease-in-out infinite alternate}.rb-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}.rb-team{background:#162c50;border:2px solid var(--rb-color,#688cb5);border-radius:18px;padding:16px 8px;box-shadow:0 0 15px #0007}.rb-team.is-selected{transform:scale(1.07);box-shadow:0 0 26px var(--rb-color,#ffcf73);background:#294b77}.rb-team .rb-icon{font-size:54px;display:block;margin-bottom:8px}.rb-stage button{margin:6px;padding:14px 20px;font-weight:800}.rb-stage .rb-primary{background:linear-gradient(135deg,#ffe6a0,#dba235);color:#18223a}.rb-steps{font-size:13px;letter-spacing:.1em;color:#9cc8ff}.rb-map{max-width:400px;margin:18px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:center}.rb-map span{padding:18px 5px;background:#203b63;border:1px solid #6c91c2;border-radius:14px}.rb-map .rb-center{background:#755622;box-shadow:0 0 24px #d5a73d}.rb-skip{position:absolute;top:0;right:0}.rb-stage .rb-hidden{display:none!important}@keyframes rbFloat{to{transform:translateY(-15px) scale(1.06)}}@media(prefers-reduced-motion:reduce){.rb-glow{animation:none}}@media(max-width:480px){.rb-stage{padding-top:55px}.rb-team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rb-team .rb-icon{font-size:36px}}
