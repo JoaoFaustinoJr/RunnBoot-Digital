@@ -1086,4 +1086,26 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #arenaScreen #track .core-hologram{z-index:11!important;max-width:290px!important;box-sizing:border-box!important}
 #arenaScreen #track .core-hologram #coreHoloMessage{position:relative!important;z-index:2!important;overflow-wrap:anywhere!important}
 @media(max-width:650px){#arenaScreen #track .core-stage .theme-station{width:22%!important}#arenaScreen #track .core-stage .station-hex strong{font-size:clamp(6px,1.4vw,11px)!important}#arenaScreen #track #coreHoloDie{font-size:44px!important}}
-</style></body></html>
+</style><style id="rb-intro-game-board-v19">
+/* Opening now presents the same four station cards, circuit geometry and processor as the playable arena */
+#rbIntroArena .rb-intro-core{grid-area:2/2/13/13!important;display:block!important;border:3px solid #eac76e!important;border-radius:14%!important;background:radial-gradient(circle at 50% 50%,#294d88 0%,#0b1d3d 65%,#061229 100%)!important;overflow:hidden!important}
+#rbIntroArena .rb-intro-core>span,#rbIntroArena .rb-intro-core>.rb-intro-old-label{display:none!important}
+#rbIntroArena .rb-intro-core:before{inset:13%!important;width:auto!important;height:auto!important;border:2px dashed #7cceff55!important;aspect-ratio:auto!important;border-radius:50%!important;box-shadow:0 0 0 20px #55c9ff12,0 0 0 40px #f8d56a09!important}
+#rbIntroArena .rb-preview-core-title{position:absolute;left:29%;top:37%;width:42%;height:28%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:2;color:#ffe3a1;text-shadow:0 0 10px #f7c85b;font-size:clamp(8px,1.6vw,16px);letter-spacing:0}
+#rbIntroArena .rb-preview-core-title b{display:grid;place-items:center;width:clamp(36px,8vw,72px);aspect-ratio:1;border:2px solid #ffdc85;border-radius:22%;background:radial-gradient(circle,#344b91,#101b3d);box-shadow:0 0 19px #ffdf7a;font-size:clamp(21px,5vw,42px)}
+#rbIntroArena .rb-preview-station{position:absolute;width:24%;height:30%;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:2px solid var(--accent);border-radius:17%;background:linear-gradient(150deg,#264c79ee,#09192fdc);box-shadow:0 0 18px var(--accent),inset 0 0 18px #102d4a}
+#rbIntroArena .rb-preview-station img{display:block;width:54%;height:55%;object-fit:contain;filter:drop-shadow(0 0 6px var(--accent))}
+#rbIntroArena .rb-preview-station strong{font-size:clamp(6px,1.25vw,13px);line-height:1.1;color:#fff;text-shadow:0 1px 4px #000;max-width:96%;overflow-wrap:anywhere}
+#rbIntroArena .rb-preview-station.robotica{--accent:#ff7c89;top:5%;left:5%}
+#rbIntroArena .rb-preview-station.programacao{--accent:#5ccaff;top:5%;right:5%}
+#rbIntroArena .rb-preview-station.design{--accent:#ffca67;bottom:5%;left:5%}
+#rbIntroArena .rb-preview-station.geek{--accent:#66e9ad;bottom:5%;right:5%}
+#rbIntroArena .rb-intro-player{width:17%!important;height:18%!important;z-index:5!important;pointer-events:none}
+#rbIntroArena .rb-intro-player small{display:none!important}
+#rbIntroArena .rb-intro-tile{z-index:4!important}
+#rbIntroArena .rb-intro-tile:nth-child(n+1):nth-child(-n+12){background-color:#55243b!important;border-color:#e17c91!important}
+#rbIntroArena .rb-intro-tile:nth-child(n+13):nth-child(-n+24){background-color:#15395d!important;border-color:#6acbff!important}
+#rbIntroArena .rb-intro-tile:nth-child(n+25):nth-child(-n+36){background-color:#64471d!important;border-color:#f4c868!important}
+#rbIntroArena .rb-intro-tile:nth-child(n+37):nth-child(-n+48){background-color:#164d3b!important;border-color:#73e9ad!important}
+@media(max-width:540px){#rbIntroArena .rb-preview-station{border-width:1px!important}#rbIntroArena .rb-preview-station strong{font-size:6px!important}#rbIntroArena .rb-intro-player{width:18%!important;height:17%!important}}
+</style><script id="rb-intro-game-board-init">(function(){function upgrade(){const arena=document.getElementById('rbIntroArena');if(!arena||arena.dataset.gameBoard==='1')return;const core=arena.querySelector('.rb-intro-core');if(!core)return;arena.dataset.gameBoard='1';core.innerHTML='<div class="rb-preview-core-title"><b>⚙</b><strong>NÚCLEO<br>PROCESSADOR</strong></div>'+[['robotica','estacao-robotica.svg','ROBÓTICA'],['programacao','estacao-programacao.svg','PROGRAMAÇÃO'],['design','estacao-design.svg','DESIGN'],['geek','estacao-geek.svg','CULTURA GEEK']].map(x=>'<div class="rb-preview-station '+x[0]+'"><img src="assets/'+x[1]+'" alt=""><strong>'+x[2]+'</strong></div>').join('');const avatars=arena.querySelectorAll('.rb-intro-player');const pos=[['18%','24%'],['82%','24%'],['18%','76%'],['82%','76%']];avatars.forEach((el,i)=>{el.style.left=pos[i][0];el.style.top=pos[i][1]})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',upgrade,{once:true});else upgrade()})();</script></body></html>
