@@ -1269,4 +1269,13 @@ function sync(){const c=cfg(),toggle=$('rbTeamChatToggle');toggle.hidden=!c;if(!
 async function poll(){sync();const c=cfg();if(!c||$('rbTeamChat').hidden||loading)return;loading=true;try{const payload={p_code:c.code,p_team:c.team,p_after:last};if(c.guest)payload.p_player_token=c.token;else payload.p_host_token=c.token;const rows=await rbRpc('runnboot_chat_read',payload);for(const m of rows||[]){const article=document.createElement('article'),heading=document.createElement('strong'),body=document.createElement('div');heading.textContent=m.sender+' · '+new Date(m.created_at).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});body.textContent=m.body;article.append(heading,body);$('rbTeamChatMessages').append(article);last=Math.max(last,Number(m.id))}if(rows?.length)$('rbTeamChatMessages').scrollTop=$('rbTeamChatMessages').scrollHeight;$('rbTeamChatStatus').textContent=c.guest?'Conversa exclusiva da equipe · O capitão confirma a resposta':'Modo professor · Acompanhamento sem envio de mensagens'}catch(e){$('rbTeamChatStatus').textContent='Não foi possível atualizar o chat: '+e.message}finally{loading=false}}
 function init(){$('rbTeamChatToggle').onclick=()=>{$('rbTeamChat').hidden=!$('rbTeamChat').hidden;poll()};$('rbTeamChatClose').onclick=()=>$('rbTeamChat').hidden=true;$('rbTeamChatTeam').onchange=()=>{identity='';poll()};$('rbTeamChatForm').onsubmit=async e=>{e.preventDefault();const c=cfg(),input=$('rbTeamChatInput'),body=input.value.trim();if(!c||!c.guest||!body)return;try{await rbRpc('runnboot_chat_send',{p_code:c.code,p_player_token:c.token,p_team:c.team,p_body:body});input.value='';await poll()}catch(err){$('rbTeamChatStatus').textContent='Mensagem não enviada: '+err.message}};setInterval(sync,1300);setInterval(poll,2400);sync()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()
-})();</script></body></html>
+})();</script><style id="rb-desktop-landscape-v32">
+/* A arena conserva as 48 casas e as posições; apenas adapta proporções no desktop. */
+@media (min-width: 900px) and (min-aspect-ratio: 6/5) {
+ #arenaScreen .board-scroll{width:100%!important;max-width:none!important;overflow-x:auto!important;overflow-y:visible!important;display:block!important}
+ #arenaScreen #track{width:min(96vw,1500px)!important;max-width:none!important;min-width:0!important;margin:0 auto!important;grid-template-columns:repeat(13,minmax(0,1fr))!important;grid-template-rows:repeat(13,minmax(0,clamp(34px,3.25vw,56px)))!important;gap:3px!important;box-sizing:border-box!important}
+ #arenaScreen #track .core-stage{grid-row:2/13!important;grid-column:2/13!important;min-height:0!important;overflow:hidden}
+ #arenaScreen #track .cell{min-height:0!important}
+ #arenaScreen #track .theme-station{width:18%!important}
+}
+</style></body></html>
