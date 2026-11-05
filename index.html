@@ -998,4 +998,31 @@ radial-gradient(circle,#2d4785,#07152d 85%)!important}
 #arenaScreen #track .core-holo-avatar{width:clamp(32px,5vw,55px)!important;height:clamp(32px,5vw,55px)!important}
 @media(max-width:650px){#arenaScreen #track .core-hologram{width:52%!important;left:24%!important;padding:9px 5px!important}#arenaScreen #track #coreHoloDie{--die-size:clamp(48px,11vw,70px)}#arenaScreen #track #coreHoloMessage{font-size:11px!important}}
 @media(prefers-reduced-motion:reduce){#arenaScreen #track #coreHoloDie.spinning{animation:none!important}}
-</style><script id="rb-core-die-sync">(function(){const faces=['⚀','⚁','⚂','⚃','⚄','⚅'];let watched=null;function attach(){const die=document.getElementById('coreHoloDie');if(!die||die===watched)return;watched=die;function sync(){const index=faces.indexOf((die.textContent||'').trim());die.dataset.face=String(index<0?5:index+1);die.setAttribute('aria-label','Dado: '+die.dataset.face)}new MutationObserver(sync).observe(die,{childList:true,characterData:true,subtree:true});sync()}const track=document.getElementById('track');if(track){new MutationObserver(attach).observe(track,{childList:true,subtree:false});attach()}else document.addEventListener('DOMContentLoaded',attach,{once:true})})();</script></body></html>
+</style><script id="rb-core-die-sync">(function(){const faces=['⚀','⚁','⚂','⚃','⚄','⚅'];let watched=null;function attach(){const die=document.getElementById('coreHoloDie');if(!die||die===watched)return;watched=die;function sync(){const index=faces.indexOf((die.textContent||'').trim());die.dataset.face=String(index<0?5:index+1);die.setAttribute('aria-label','Dado: '+die.dataset.face)}new MutationObserver(sync).observe(die,{childList:true,characterData:true,subtree:true});sync()}const track=document.getElementById('track');if(track){new MutationObserver(attach).observe(track,{childList:true,subtree:false});attach()}else document.addEventListener('DOMContentLoaded',attach,{once:true})})();</script><style id="rb-holographic-emitter-v14">
+/* Holographic projector: three ascending concentric rings, a vertical light cone and a materializing panel */
+#arenaScreen #track .core-stage{perspective:900px!important}
+#arenaScreen #track .core-stage .rb-holo-emitter{position:absolute;z-index:8;inset:0;pointer-events:none;overflow:visible;opacity:0;visibility:hidden}
+#arenaScreen #track .core-stage.rb-holo-ignite .rb-holo-emitter{opacity:1;visibility:visible}
+#arenaScreen #track .rb-holo-emitter .rb-holo-beam{position:absolute;left:29%;top:22%;width:42%;height:58%;clip-path:polygon(45% 100%,55% 100%,100% 0,0 0);background:linear-gradient(0deg,#5df5ff07,#54d9ff28 50%,#b3f9ff04);filter:blur(4px);animation:rbHoloBeam .8s ease-out both}
+#arenaScreen #track .rb-holo-emitter .rb-holo-ring{position:absolute;left:50%;top:72%;width:37%;height:13%;border:clamp(2px,.4vw,5px) solid #83f4ff;border-radius:50%;box-shadow:0 0 9px #41e9ff,0 0 24px #28c9ff,inset 0 0 12px #b9ffff;transform:translate(-50%,-50%) scale(.65);opacity:0;animation:rbHoloRise 1.05s ease-out both}
+#arenaScreen #track .rb-holo-emitter .rb-holo-ring:nth-child(2){animation-delay:.12s}
+#arenaScreen #track .rb-holo-emitter .rb-holo-ring:nth-child(3){animation-delay:.25s}
+#arenaScreen #track .rb-holo-emitter .rb-holo-ring:nth-child(4){animation-delay:.38s}
+#arenaScreen #track .rb-holo-emitter .rb-holo-base{position:absolute;left:50%;top:77%;width:43%;height:12%;border:2px solid #74eaff;border-radius:50%;box-shadow:0 0 17px #00d9ff,0 0 30px #65d9ff77;transform:translate(-50%,-50%);animation:rbHoloBase .9s ease-out both}
+#arenaScreen #track .core-stage.rb-holo-ignite #coreHologram{animation:rbHoloMaterialize .75s .32s both!important;transform-origin:50% 95%!important}
+#arenaScreen #track .core-stage.rb-holo-ignite .core-symbol{filter:drop-shadow(0 0 22px #5cf9ff)!important}
+@keyframes rbHoloRise{0%{top:78%;opacity:0;transform:translate(-50%,-50%) scale(.45)}25%{opacity:.95}65%{opacity:.75}100%{top:28%;opacity:0;transform:translate(-50%,-50%) scale(1.45)}}
+@keyframes rbHoloBeam{0%{opacity:0;transform:scaleY(.2);transform-origin:bottom}35%{opacity:1}100%{opacity:.65;transform:scaleY(1);transform-origin:bottom}}
+@keyframes rbHoloBase{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.3)}}
+@keyframes rbHoloMaterialize{0%{opacity:0;filter:blur(13px) brightness(2.2);transform:translateY(32px) scale(.65) rotateX(30deg)}45%{opacity:.65;filter:blur(5px) brightness(1.8)}100%{opacity:1;filter:blur(0) brightness(1);transform:translateY(0) scale(1) rotateX(0)}}
+@media(max-width:650px){#arenaScreen #track .rb-holo-emitter .rb-holo-ring{border-width:2px}#arenaScreen #track .rb-holo-emitter .rb-holo-beam{filter:blur(2px)}}
+@media(prefers-reduced-motion:reduce){#arenaScreen #track .rb-holo-emitter{display:none!important}#arenaScreen #track .core-stage.rb-holo-ignite #coreHologram{animation:none!important}}
+</style>
+<script id="rb-holographic-emitter-control">(function(){
+const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let stage=null, hologram=null, lastMessage='', resetHandle=null;
+function trigger(){if(reduced||!stage||!hologram)return;stage.classList.remove('rb-holo-ignite');void stage.offsetWidth;stage.classList.add('rb-holo-ignite');clearTimeout(resetHandle);resetHandle=setTimeout(()=>stage&&stage.classList.remove('rb-holo-ignite'),1400)}
+function connect(){const h=document.getElementById('coreHologram');if(!h||h===hologram)return;hologram=h;stage=h.closest('.core-stage');if(!stage)return;if(!stage.querySelector('.rb-holo-emitter')){const e=document.createElement('div');e.className='rb-holo-emitter';e.setAttribute('aria-hidden','true');e.innerHTML='<i class="rb-holo-beam"></i><i class="rb-holo-ring"></i><i class="rb-holo-ring"></i><i class="rb-holo-ring"></i><i class="rb-holo-base"></i>';stage.insertBefore(e,h)}lastMessage='';new MutationObserver(()=>{const msg=document.getElementById('coreHoloMessage');const current=msg?msg.textContent.trim():'';if(current&&current!==lastMessage){lastMessage=current;trigger()}}).observe(h,{childList:true,subtree:true,characterData:true});trigger()}
+function start(){const track=document.getElementById('track');if(!track)return;new MutationObserver(connect).observe(track,{childList:true,subtree:false});connect()}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()
+})();</script></body></html>
