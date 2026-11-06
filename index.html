@@ -1268,4 +1268,24 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  #arenaScreen #track .cell{min-height:0!important}
  #arenaScreen #track .theme-station{width:18%!important}
 }
-</style></body></html>
+</style><style id="rb-clean-main-menu-v33">
+/* Interface de abertura: menu principal independente da arena. */
+#mainMenu{position:fixed!important;inset:0!important;z-index:10000!important;overflow-y:auto!important;overscroll-behavior:contain;background:radial-gradient(ellipse at 50% 20%,#153e73 0%,#07142b 66%,#030914 100%)!important;padding:clamp(12px,3vw,28px)!important;box-sizing:border-box!important}
+#mainMenu[hidden],#rulesScene[hidden],#launchScene[hidden]{display:none!important}
+#mainMenu .menu-content{width:min(100%,950px)!important;max-width:950px!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:12px!important;padding:12px 0 30px!important}
+#mainMenu .menu-rai{width:clamp(65px,12vw,115px)!important;max-height:115px!important;object-fit:contain}
+#mainMenu h1{margin:0!important;font-size:clamp(2rem,6vw,4rem)!important}
+#mainMenu .rb-menu-board{width:min(100%,620px)!important;margin:4px auto!important}
+#mainMenu .rb-menu-board img{width:100%!important;max-height:32vh!important;object-fit:contain!important}
+#mainMenu .rb-menu-stations{display:none!important}
+#mainMenu .menu-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:min(100%,650px)!important}
+#mainMenu .menu-actions button{min-height:56px!important;white-space:normal!important;font-size:clamp(13px,2vw,17px)!important;cursor:pointer!important;touch-action:manipulation!important}
+#mainMenu .menu-actions button:first-child{grid-column:1/-1;background:linear-gradient(105deg,#f3c65b,#e7a33c)!important;color:#122039!important;font-weight:900!important}
+#mainMenu .rb-author-credit{order:8;font-size:12px!important;opacity:.75}
+#rulesScene{position:fixed!important;inset:0!important;z-index:11000!important;overflow:auto!important}
+#rulesScene .rules-panel{max-height:90dvh!important;overflow:auto!important}
+@media(max-width:550px){#mainMenu .menu-actions{grid-template-columns:1fr!important}#mainMenu .menu-actions button:first-child{grid-column:auto!important}#mainMenu .rb-menu-board img{max-height:26vh!important}}
+</style><script id="rb-menu-actions-fix-v33">(function(){
+function relocate(){for(const id of ['mainMenu','rulesScene','launchScene','teamSpotlight','rpgScene']){const el=document.getElementById(id);if(el&&el.parentElement!==document.body)document.body.appendChild(el)}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',relocate,{once:true});else relocate();
+})();</script></body></html>
