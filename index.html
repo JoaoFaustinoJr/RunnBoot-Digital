@@ -1301,17 +1301,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 function update(){const room=document.getElementById('rbRoomSetup'),local=document.getElementById('rbLocalTeams'),title=document.getElementById('rbSetupModeTitle');if(!title)return;const online=room&&room.style.display!=='none'&&!room.hidden&&(!local||local.style.display==='none'||local.hidden);title.textContent=online?'🌐 Sala online':'⚙ Configurar equipes'}
 function init(){const room=document.getElementById('rbRoomSetup'),local=document.getElementById('rbLocalTeams');if(room)new MutationObserver(update).observe(room,{attributes:true,attributeFilter:['style','hidden']});if(local)new MutationObserver(update).observe(local,{attributes:true,attributeFilter:['style','hidden']});update()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();</script><style id="rb-physical-board-heritage-v35">
-/* A identidade do tabuleiro físico inspira a arena sem alterar a lógica ou a posição das 48 casas. */
-#arenaScreen .board-scroll{position:relative;isolation:isolate;background:radial-gradient(circle at 50% 50%,#13c5fa20 0%,#071b38e8 58%,#041021 100%),url('assets/tabuleiro_circuito.png') center/100% 100% no-repeat!important;border:2px solid #1caee0!important;box-shadow:inset 0 0 32px #008cff4a,0 0 22px #00b4ff22!important}
-#arenaScreen .board-scroll::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.34;background:repeating-linear-gradient(90deg,transparent 0 45px,#22baff12 46px,#22baff12 47px,transparent 48px 90px),repeating-linear-gradient(0deg,transparent 0 45px,#22baff0c 46px,#22baff0c 47px,transparent 48px 90px)}
+})();</script><style id="rb-physical-board-watermark-v36">
+/* Mantém integralmente o cenário interno, a animação e o movimento da arena.
+   O tabuleiro físico aparece apenas como marca d'água discreta ao fundo. */
+#arenaScreen .board-scroll{position:relative;isolation:isolate}
+#arenaScreen .board-scroll::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:url('assets/tabuleiro_circuito.png') center/contain no-repeat;opacity:.085;filter:saturate(.65)}
 #arenaScreen #track{position:relative;z-index:1}
-#arenaScreen #track .theme-station{border-radius:16px!important;outline:1px solid #ffffff44;outline-offset:2px;box-shadow:inset 0 0 20px #06182dc9,0 0 18px #00c9ff33!important}
-#arenaScreen #track .theme-station-0{border-color:#c8ec19!important;filter:drop-shadow(0 0 10px #c8ec1988)!important}
-#arenaScreen #track .theme-station-1{border-color:#10d3f6!important;filter:drop-shadow(0 0 10px #10d3f688)!important}
-#arenaScreen #track .theme-station-2{border-color:#f9dd1d!important;filter:drop-shadow(0 0 10px #f9dd1d88)!important}
-#arenaScreen #track .theme-station-3{border-color:#f68b24!important;filter:drop-shadow(0 0 10px #f68b2488)!important}
-#arenaScreen .rb-pedestal-stack{filter:drop-shadow(0 2px 5px #000b) drop-shadow(0 0 7px #39dfff8a)!important}
-#arenaScreen .rb-pedestal-base,#arenaScreen .rb-pedestal-step{border-color:#a8f3ff!important;box-shadow:0 0 8px #24d8ff88,inset 0 0 4px #c1f6ff88!important}
-@media(prefers-reduced-motion:reduce){#arenaScreen .board-scroll::before{opacity:.15}}
 </style></body></html>
