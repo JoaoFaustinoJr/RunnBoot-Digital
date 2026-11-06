@@ -1349,4 +1349,24 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #arenaScreen .board-scroll{position:relative;isolation:isolate}
 #arenaScreen .board-scroll::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:url('assets/tabuleiro_circuito.png') center/contain no-repeat;opacity:.15;filter:saturate(.72)}
 #arenaScreen #track{position:relative;z-index:1}
-</style></body></html>
+</style><script id="rb-deep-link-room-v1">
+(function(){
+const params=new URLSearchParams(location.search),code=(params.get('room')||'').trim().toUpperCase();
+if(!/^[A-Z0-9]{6}$/.test(code))return;
+function init(){
+const input=document.getElementById('rbJoinCode');
+if(!input)return;
+input.value=code;
+const menu=document.getElementById('mainMenu');if(menu)menu.hidden=true;
+const launch=document.getElementById('launchScene');if(launch)launch.hidden=true;
+const rules=document.getElementById('rulesScene');if(rules)rules.hidden=true;
+document.body.classList.remove('game-not-launched');
+if(typeof showScreen==='function')showScreen('setup');
+const section=document.getElementById('rbRoomSetup');if(section){section.hidden=false;section.style.display='block'}
+const status=document.getElementById('roomNotice');if(status)status.textContent='Convite recebido. Conectando à sala '+code+'…';
+history.replaceState(null,'',location.pathname+location.hash);
+if(typeof joinRoomPreview==='function')Promise.resolve(joinRoomPreview()).catch(e=>{if(status)status.textContent='Não foi possível entrar na sala. Confira o código e tente novamente.'});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(init,300));else setTimeout(init,300);
+})();
+</script></body></html>
