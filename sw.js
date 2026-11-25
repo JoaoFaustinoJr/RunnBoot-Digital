@@ -1,4 +1,4 @@
-const CACHE='runnboot-shell-v6';
+const CACHE='runnboot-shell-audio-20261125';
 const SHELL=['./','./index.html'];
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
@@ -17,7 +17,7 @@ self.addEventListener('activate',event=>{
     await self.clients.claim();
   })());
 });
-self.addEventListener('fetch',event=>{
+self.addEventListener('fetch',event=>{if(new URL(event.request.url).pathname.endsWith('.mp3'))return;
   const url=new URL(event.request.url);
   if(event.request.method!=='GET'||url.origin!==self.location.origin)return;
   if(event.request.mode==='navigate'){

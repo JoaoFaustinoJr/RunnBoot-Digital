@@ -958,12 +958,15 @@ window.rbStopBoardTour=stop;
 })();
 </script><div id="rbTrapScene" hidden role="dialog" aria-modal="true" aria-labelledby="rbTrapTitle"><div class="rb-trap-panel"><div class="rb-trap-icon" id="rbTrapIcon">⚠️</div><h2 id="rbTrapTitle">ARMADILHA</h2><p id="rbTrapMessage"></p><button type="button" id="rbTrapClose">Entendido · continuar</button></div></div><script id="rb-audio-polish-js">
 (function(){
-let musicTimer=null,beat=0,trapTimer=null;
+let trapTimer=null,musicActive=false;
 const $a=id=>document.getElementById(id);
-const notes=[164.81,196,246.94,196,146.83,185,220,185,130.81,164.81,196,164.81,146.83,174.61,220,174.61];
-function musicTick(){if(!soundEnabled||document.hidden||!$a("arenaScreen")||$a("arenaScreen").hidden||typeof evolutionActive!=="undefined"&&evolutionActive)return;const f=notes[beat++%notes.length];tone(f,.32,"sine",.006);if(beat%4===1)tone(f/2,.45,"triangle",.007)}
-window.rbStartMusic=function(){if(musicTimer)return;musicTimer=setInterval(musicTick,440)};
-window.rbStopMusic=function(){if(musicTimer)clearInterval(musicTimer);musicTimer=null};
+const track=new Audio('assets/audio/runnboot-20261125.mp3');track.loop=true;track.preload='none';track.volume=.18;
+function musicTick(){const arena=$a('arenaScreen');const allowed=musicActive&&soundEnabled&&!document.hidden&&arena&&!arena.hidden;track.volume=typeof evolutionActive!=='undefined'&&evolutionActive?.04:.18;if(allowed){if(track.paused)track.play().catch(()=>{})}else track.pause()}
+window.rbStartMusic=function(){musicActive=true;musicTick()};
+window.rbStopMusic=function(){musicActive=false;track.pause()};
+const arena=$a('arenaScreen');if(arena)new MutationObserver(musicTick).observe(arena,{attributes:true,attributeFilter:['hidden']});
+document.addEventListener('click',()=>{musicActive=true;musicTick()});
+setInterval(()=>{if(!track.paused)musicTick()},500);
 window.rbEvolutionMusic=function(){if(!soundEnabled)return;const seq=[261.63,329.63,392,523.25,659.25,783.99,1046.5,1318.51];seq.forEach((f,i)=>setTimeout(()=>{if(typeof evolutionActive!=="undefined"&&evolutionActive){tone(f,.6,"sine",.045);tone(f/2,.48,"triangle",.018)}},i*820));setTimeout(()=>{if(typeof evolutionActive!=="undefined"&&evolutionActive){tone(1046.5,1.3,"sine",.045);tone(1567.98,1.3,"triangle",.022)}},6900)};
 window.rbShowTrap=function(tr){if(!tr)return;const scene=$a("rbTrapScene");if(!scene)return;const icon=tr.label.split(" ")[0];$a("rbTrapIcon").textContent=icon;$a("rbTrapTitle").textContent="ARMADILHA · "+tr.label;$a("rbTrapMessage").textContent="RAI: Atenção, exploradores! "+tr.message+" "+(tr.kind==="back"?"O avatar recuou duas casas.":"A rodada termina aqui.");scene.hidden=false;clearTimeout(trapTimer);for(let i=0;i<3;i++)setTimeout(()=>tone(200-i*40,.25,"sawtooth",.022),i*240);trapTimer=setTimeout(()=>scene.hidden=true,6500)};
 $a("rbTrapClose").onclick=()=>{clearTimeout(trapTimer);$a("rbTrapScene").hidden=true};
